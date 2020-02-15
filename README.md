@@ -20,7 +20,7 @@ To obtain the homographies, the script **homog.m** performs the following steps:
 
 ![Screenshot](images/before_RANSAC.png)
 
-To remove the outliers, a method called RANSAC is performed. These method has the following steps:
+To remove the outliers, a method called RANSAC is performed. This method has the following steps:
 1) Randomly select the minimum number of matches (pair of points) needed for the transformation
 2) Estimate the parameters of the model based on those matches
 3) Using the remaining matches and the model obtained in step 2, determine the transformation for each match point and calculate the error
@@ -31,5 +31,18 @@ For a 2D projective transformation (i.e., homography), the minimum number of poi
 
 ![Screenshot](images/after_RANSAC.png)
 
+**Obtain transformations**: An homography corresponds to a 3x3 matrix where the value in the 3rd column and 3rd row (i.e., in position (3,3)) corresponds to a scale factor to which the value 1 can be assigned. Therefore, the degree of freedom (i.e., the number of parameters) is 3x3-1 = 8. As each match point gives 2 coordinates (x and y), the minimum number of points needed to obtain the matrix is 8/2 = 4. Given the matches between images, the homography matrix can be obtained by applying a Direct Linear Transformation (DLT). 
 
+So, a 2D homography can be rewritten as:
 
+![Screenshot](images/homog_eq.png)
+
+Therefore, for the minimum number of points (i.e., 4), the DLT is:
+
+![Screenshot](images/homog_matrix.png)
+
+For more than 4 points, the Least Square method must be applied. That corresponds to solving the DLT with the following normal equation:
+
+![Screenshot](images/normal_eq.png)
+
+where h is the vector of parameters, A is the square matrix and B is the vector of coordinates of the second image.
