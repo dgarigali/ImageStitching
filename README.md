@@ -57,15 +57,15 @@ Note that to obtain, for example, H21, we simply apply the inverse of H12 (which
 
 ## To run the program
 
-To test the program, simply execute the file **run.m** in Matlab. This script reads the images from a chosen dataset, calls the function on the script **Homog.m** and uses the resulting homographies to build the mosaic.
+To test the program, simply execute the file **run.m** in Matlab. This script reads the images from a chosen dataset, calls the function on the script **homog.m** and uses the resulting homographies to build the mosaic.
 
-To select a dataset, edit the line 8 of the file run.m. For example, to use the "translation" dataset:
+To select a dataset, edit the line 8 of the file **run.m**. For example, to use the "translation" dataset:
 
 ```
 folder_name = 'datasets/translation/';
 ```
 
-To change the RANSAC parameters, edit the lines 43-45 of the file Homog.run
+To change the RANSAC parameters, edit the lines 43-45 of the file **homog.m**
 
 ```
 threshold = 49; %set threshold (|r_i|<epsilon) - inlier criteria
