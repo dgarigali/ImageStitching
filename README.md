@@ -46,3 +46,14 @@ For more than 4 points, the Least Square method must be applied. That correspond
 ![Screenshot](images/normal_eq.png)
 
 where h is the vector of parameters, A is the square matrix and B is the vector of coordinates of the second image.
+
+**Propagate transformations**: The projective transformations are calculated between consecutive images (i.e., H12 for homography between images 1 and 2, H23 for homography between images 2 and 3, etc). To obtain the transformations between each image and the reference image (which in this case is the image 1), the transformations must be propagated (i.e., multiplied) from the given image to image 1. For instance, to obtain the transformation from image 3 to image 1:
+
+```
+H31 = H21 * H32
+```
+
+Note that to obtain, for example, H21, we simply apply the inverse of H12 (which is the one we actually obtain from the previous step).
+
+## To run the program
+
